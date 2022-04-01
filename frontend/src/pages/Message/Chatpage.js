@@ -1,18 +1,20 @@
 
-import {useEffect, useState} from "react"
+import {useEffect, useState, useRef} from "react"
 import { Link, useParams, useNavigate } from "react-router-dom";
 //import {AiOutlineSearch} from "react-icons/ai"
 import BackBtn from "../../components/BackBtn";
 //import ProfileImg from "../Home/Hcomponent/ProfileImg";
 import io from "socket.io-client"
 import { connect } from "react-redux";
-import { conversation, sendMessages } from "../../actions/messages";
+import { conversation, sendMessages, getMessages } from "../../actions/messages";
+//import { socket } from "../../utils/secketGlobal";
 
 
 function MessageChat(props) {
+    const msgDiv = useRef(null);
     const [message, setMessage]=useState("")
     const [socket, setSocket]=useState(null)
-    const [users, setUsers] = useState([
+    const [messages, setMessages] = useState([
         { date:"11:11",
             message:`no messages..`,
             img:"image/uimg.jpg",
@@ -30,22 +32,36 @@ function MessageChat(props) {
       }, [myid, uid]);
 
       useEffect(() => {
-       setUsers(props.auth.messages)
-       console.log(props.auth.messages)
+       setMessages(props.auth.messages)
+      //console.log(props.auth.messages[0])
       }, [props.auth.messages]);
 
     useEffect(() => {
-        const newSocket = ""//io(`https://real-time-api.herokuapp.com/`);
+        const newSocket = io(`http://192.168.137.96:4000/`);
         setSocket(newSocket);
-        return () => newSocket.close();
+       // return () => newSocket.close();
       }, [setSocket]);
 
+
+      //use effect for socket
       useEffect(() => {
        if(socket){
-           console.log("connected")
-            socket.on("sayHello", data=>{
-                console.log(data)
+           
+           socket.emit("newConnect", myid)
+            
+
+
+            socket.emit('subscribe', props.auth.conversation._id, uid);
+
+ 
+            socket.on('msg', (e) => {
+                setMessages([...messages, e])
             })
+
+          //  socket.on('messages', (e) => {
+            //    console.log(e)
+           // })
+            
        }
       }, [socket]);
 
@@ -57,27 +73,44 @@ function MessageChat(props) {
         props.sendMessages({text:message, senderId:myid, conversationId:props.auth.conversation._id },props.auth.conversation._id);
 
         if(socket){
-           
-             socket.emit("private message", { message, uid, myid })
+
+
+            //casting default message template like db kind
+
+          const msg = { conversationId: props.auth.conversation._id,
+            createdAt: "2022-04-01T02:25:01.510Z",
+            recieverId: uid,
+            senderId: myid,
+            text: message,
+            
+          
+            _id: "6246627df020386241dbd84d",
+           }
+             socket.emit("sendMessage", msg, props.auth.conversation._id,)
         }
         setMessage("")
       }
 
+//since socket io decided to be a b*** we using time out 😔 so we using plan F
 
-    
+ useEffect(()=>{
+    msgDiv.current.scrollIntoView()
+ },[messages])
+ 
+    //
 
    
     return (
         <div className="message-feed-container bottom-margin">
           <BackBtn/>
             
-            <div className="row-users-search">
+            <div className="row-messages-search">
                 <div className="clear-div"><button className="clear-msg-btn">Clear</button></div>
-                <div className="message-div">
+                <div  ref={msgDiv} className="message-div">
                    
-                    <div className="users-row-holder">
+                    <div className="messages-row-holder">
                         {
-                            users.map((e, i)=>{
+                            messages.map((e, i)=>{
                                 return (<div className={`chat-box-${e.senderId===myid?true:false}`} key={i}>
                                {!e.senderId===myid&& <div className="user-profile" src={"image/user.jpg"} alt="fr"/> }
                                             <div className={`message-text-time-${e.senderId===myid?true:false}`}>
@@ -109,7 +142,7 @@ function MessageChat(props) {
     posts: state.posts
   });
 
-  export default connect( mapStateToProps, {conversation, sendMessages} )( MessageChat );
+  export default connect( mapStateToProps, {conversation, sendMessages, } )( MessageChat );
  
 
   

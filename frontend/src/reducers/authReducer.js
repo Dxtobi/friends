@@ -91,6 +91,8 @@ export default function app( state = initialState, action ){
                    loading:false,
                   //functiom:()=>console.log("called to stop")
                 }
+
+                //
     default:
       return state;
   }

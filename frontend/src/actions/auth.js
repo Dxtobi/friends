@@ -63,6 +63,25 @@ export const cheackAut =  () => dispatch => {
      );
 };
 
+export const useGoogle =  () => dispatch => {
+  //console.log(userData, history)
+  dispatch({type:LOADING})
+ //const locId= localStorage.getItem("friendapp")
+ // console.log("id:",locId);
+  axios.post(`https://friendsapp-api.herokuapp.com/google/auth`)
+   .then(res => {
+    // console.log("data:", res.data);
+     dispatch(setAuth(res))
+     //return !isEmpty(res.data)
+     dispatch({type:STOP_LOADING})
+   })
+   .catch( err =>
+      { dispatch({
+        type: GET_ERROR,
+        payload: err
+      })}
+     );
+};
 
 
 export const setAuth = (res) => dispatch => {

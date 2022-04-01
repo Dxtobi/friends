@@ -44,7 +44,7 @@ function AddPost(props) {
         const mp = props.getPosts()
         
         setTimeout(() => {
-            nav("/suggestions")
+            nav("/suggestion")
         }, 1000);
             
         

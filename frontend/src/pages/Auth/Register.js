@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import CommonBtn from "./Acomponents/CommonBtn";
 import CommonInput from "./Acomponents/LoginInputes";
 import FeedbackMessage from "./Acomponents/FeedbackMessage.js";
-
+import { GoogleLogin } from "react-google-login";
 
 
 function Register() {
@@ -14,10 +14,14 @@ function Register() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [submitted, setSubmitted] = useState(false)
-    const [error, setError] = useState(false)
+    const [error, setError] = useState("")
     const navigate = useNavigate()
     const location = '/signin'
-  
+
+
+
+    const apiid = "842073432195-q5upfuo71c8140rbv8rp3pn68q6tgtp9.apps.googleusercontent.com"
+    
 
     useEffect(() => {
     if (submitted){
@@ -39,6 +43,15 @@ function Register() {
     const handlePassword= (e) =>{
         setPassword(e)
         setSubmitted(false)
+    }
+
+    
+    const onSuccess = (request)=>{
+        console.log(request.profileObj)
+    }
+
+    const onFailure = (request)=>{
+        console.log(request)
     }
     const errorMessage = (e) =>{
         return (
@@ -81,9 +94,9 @@ function Register() {
     }
     const signupFun = async (e) => {
         e.preventDefault();
-        if(username === '' || email === '' || password === '' || phone === ''){
+        if(username.length <4 ||email.length<9 || password.length <5 || phone.toString().length<10){
             console.log("error");
-            setError(true)
+            setError("Bad details 😔")
         }else{
             apiPost()
             apiPost ? setSubmitted(true) : setSubmitted(false)
@@ -99,10 +112,15 @@ function Register() {
             <div className="login-header">
                 <h2>Create Account</h2>
                 <small className="text-color">Please fill the form</small>
+                <br/>
+                <br/>
+                    <br/>
+                {error!==""&&<small className="error-div">{error}</small>}
             </div>
             {errorMessage()}
             {successMessage()}
-            <div className="input-sec-holder">
+           <form>
+           <div className="input-sec-holder">
                 <CommonInput onChangeFun={handleUname} value={username} label="Username" type="text"/>
                 <CommonInput onChangeFun={handlePhone} value={phone} label="Phone Number" type="number" />
                 <CommonInput onChangeFun={handleEmail} value={email} label="Email" type="email" />
@@ -111,8 +129,22 @@ function Register() {
             
             <div className="button-sec-holder">
                 <CommonBtn onChangeClick={signupFun}  label="Sign up" type="submit" />
+                <br/>
+          
+            {/*<GoogleLogin
+                        clientId={apiid}
+                        buttonText="Signup with Google"
+                       // onRequest={}
+                        onSuccess={onSuccess}
+                        onFailure={onFailure}
+                        cookiePolicy={'single_host_origin'}
+                        isSignedIn={true}
+                        
+                    />*/}
             </div>
+          
 
+           </form>
             <div className="login-footer">
                 <small >Already have an account <Link to="/signin" className="footer-link">Sign in</Link></small>
             </div>

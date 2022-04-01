@@ -34,50 +34,83 @@ function SugestComp({auth, menu, setMenu}) {
 
   function ListComp({ type}) {
     const [books, SetBooks]=useState([{
-      name: "Your Fully Charged Life",
-      author:"Meaghan B. Murphy"
-    },
-    {
-      name: "Authentic Happiness",
-      author:"Martin E. P. Seligman, PhD"
-    },{
-      name: "Year of Yes",
-      author:"Shonda Rhimes"
-    },{
-      name: "Eat, Pray, Love",
-      author:"Elizabeth Gilbert"
-    },{
-      name: "Wild ",
-      author:"Cheryl Strayed"
-    },{
-      name: "The Power of Positive Thinking",
-      author:"Norman Vincent Peale"
-    },{
-      name: "The How of Happiness",
-      author:"Sonja Lyubomirsky"
-    },{
-      name: "Hector and the Search for Happiness",
-      author:"François Lelord"
-    },{
-      name: "The Art of Happiness",
-      author:"the Dalai Lama"
-    },{
-      name: "Happier Human",
-      author:"Unknown"
-    },{
-      name: "The Geography of Bliss",
-      author:"Unknown"
-    },{
-      name: "The Happiness Project",
-      author:"Gretchen Rubin"
-    },{
-      name: "The Gift of Presence",
-      author:"Caroline Welch"
-    },])
+        name: "Your Fully Charged Life",
+        author:"Meaghan B. Murphy"
+      },
+      {
+        name: "Authentic Happiness",
+        author:"Martin E. P. Seligman, PhD"
+      },{
+        name: "Year of Yes",
+        author:"Shonda Rhimes"
+      },{
+        name: "Eat, Pray, Love",
+        author:"Elizabeth Gilbert"
+      },{
+        name: "Wild ",
+        author:"Cheryl Strayed"
+      },{
+        name: "The Power of Positive Thinking",
+        author:"Norman Vincent Peale"
+      },{
+        name: "The How of Happiness",
+        author:"Sonja Lyubomirsky"
+      },{
+        name: "Hector and the Search for Happiness",
+        author:"François Lelord"
+      },{
+        name: "The Art of Happiness",
+        author:"the Dalai Lama"
+      },{
+        name: "Happier Human",
+        author:"Unknown"
+      },{
+        name: "The Geography of Bliss",
+        author:"Unknown"
+      },{
+        name: "The Happiness Project",
+        author:"Gretchen Rubin"
+      },{
+        name: "The Gift of Presence",
+        author:"Caroline Welch"
+      },])
+
+
+      const [movies, setMovies]=useState([
+      {
+        name: "I Wanna Dance with Somebody (Who Loves Me)’ by Whitney Houston",
+       // author:"Martin E. P. Seligman, PhD"
+      },{
+        name: "Dancing Queen’ by ABBA",
+       // author:"Shonda Rhimes"
+      },{
+        name: "Three Little Birds' by Bob Marley & The Wailers",
+       // author:"Elizabeth Gilbert"
+      },{
+        name: "Tightrope' by Janelle Monáe ",
+       // author:"Cheryl Strayed"
+      },{
+        name: "Lovely Day' by Bill Withers",
+        //author:"Norman Vincent Peale"
+      },{
+        name: "Walking on Sunshine' by Katrina & The Waves",
+        //author:"Sonja Lyubomirsky"
+      },{
+        name: "Good as Hell' by Lizzo ",
+        //author:"Cheryl Strayed"
+      },{
+        name: "Don't Stop Me Now' by Queen",
+        //author:"Norman Vincent Peale"
+      },{
+        name: "I Got You (I Feel Good)' by James Brown & The Famous Flames",
+        //author:"Sonja Lyubomirsky"
+      }
+    ])
+
 
      if (type === "Music") {
        return <div>
-         {books.map((e, i) => {
+         {movies.map((e, i) => {
            return (
                 <div key={i} className="sugest-list-items">
                   <AiOutlineAudio />
@@ -92,7 +125,7 @@ function SugestComp({auth, menu, setMenu}) {
     }
     if (type === "Movies") {
       return <div>
-        {books.map((e, i) => {
+        {movies.map((e, i) => {
           return (
                <div key={i} className="sugest-list-items">
                  <GiFilmProjector />

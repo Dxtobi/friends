@@ -21,7 +21,7 @@ function Message(props) {
     },[])
 
     useEffect(()=>{
-        console.log(props.auth)
+       console.log(props.auth)
         setUsers(props.auth.friends)
     },[props.auth.friends])
 

@@ -31,7 +31,7 @@ export const conversation =  (body) => dispatch => {
    export const getConversations =  () => dispatch => {
 
     const id = localStorage.getItem('friendapp');
-    dispatch({type:LOADING})
+    //dispatch({type:LOADING})
     
      axios.get(`https://friendsapp-api.herokuapp.com/conversation/${id}`,)
       .then(res => {
@@ -53,7 +53,7 @@ export const conversation =  (body) => dispatch => {
    //one on one
    export const getMessages =  (id) => dispatch => {
     
-    dispatch({type:LOADING})
+    //dispatch({type:LOADING})
     
      axios.get(`https://friendsapp-api.herokuapp.com/message/${id}`,)
       .then(res => {

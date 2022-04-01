@@ -9,7 +9,7 @@ import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
 import HomeFeed from './pages/Home/Home';
 //<<<<<<< HEAD
-import Welcome from './pages/Home/Welcome';
+import Welcome from './pages/welcome';
 //=======
 //import Welcome from './pages/Auth/Welcome';
 import Suggestions from './pages/Home/Suggestions';
@@ -32,7 +32,7 @@ function App() {
     <Provider store={ store }>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomeFeed />} />
+        <Route path="/" element={<Welcome />} />
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/feeds" element={<HomeFeed />} />
         <Route path="/message" element={<Message />} />

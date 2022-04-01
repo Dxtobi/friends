@@ -611,6 +611,14 @@ button.sugest-tabs_true {
   align-items: center;
   justify-content: space-between;
 }
+small.error-div {
+  width: 100%;
+  padding: 10px;
+  background: red;
+  border-radius: 20px;
+  color: white;
+  margin: 10px auto;
+}
 button.sugest-tabs_false {
   border: none;
   padding: 10px;
@@ -739,3 +747,41 @@ button.chat-delete {
   border: none;
   color: rgb(255, 255, 255);
 }
+
+img.image-welcom {
+  width: 80%;
+  margin: auto;
+}
+
+.we-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+a.welcome-btn {
+  padding: 10px;
+  background: #1890ff;
+  color: white;
+  border-radius: 10px;
+  margin: 20px auto;
+  font-size: xxx-large;
+}
+
+
+.welcome-feed-container.bottom-margin {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+img.image-welcom {
+  width: 500px;
+  margin: auto;
+  height: 500px;
+  border-radius: 50%;
+}
+

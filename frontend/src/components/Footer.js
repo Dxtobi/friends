@@ -12,7 +12,7 @@ function Footer({ auth, cheackAut }) {
     const nav = useNavigate()
   useEffect(() => {
       cheackAut()
-      auth.isAuthenticated?nav("/feeds"):nav("/signin");
+      auth.isAuthenticated?nav("/feeds"):nav("/");
        // console.log("auth :", auth.user, "auth auth", auth.isAuthenticated)
       //  nav("/feeds")
         
