@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import CommonBtn from "./Acomponents/CommonBtn";
 import CommonInput from "./Acomponents/LoginInputes";
-import { FcGoogle } from "react-icons/fc";
+//import { FcGoogle } from "react-icons/fc";
 import { login } from "../../actions/auth";
 import { connect } from 'react-redux';
 
@@ -12,9 +12,11 @@ function Login(props) {
     const [error, setError] = useState("")
 
 
-  useEffect(()=>{
+ /* useEffect(()=>{
     console.log(props.auth);
-  },[props.auth])
+  },[props.auth])*/
+
+
     const loginFun = (e) => {
         ///console.log(props);
         e.preventDefault()

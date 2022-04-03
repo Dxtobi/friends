@@ -12,5 +12,6 @@ export const STOP_LOADING = "STOP_LOADING"
 export const GET_SINGLE_MSG = "GET_SINGLE_MSG"
 //GET_CON_ID
 export const GET_CON_ID = "GET_CON_ID";
-export const GET_MESSAGES = "GET_MESSAGES"
-export const GET_USERS_FRIENDS = "GET_USERS_FRIENDS"
+export const GET_MESSAGES = "GET_MESSAGES";
+export const GET_USERS_FRIENDS = "GET_USERS_FRIENDS";
+export const GET_MESSAGE = "GET_MESSAGE";

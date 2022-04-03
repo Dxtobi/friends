@@ -38,9 +38,10 @@ function Message(props) {
                     <div className="message-header">Messages</div>
                     <div className="users-row-holder">
                         {
-                           users.length > 1 ? users.map((e, i)=>{
-                              console.log(e.members)
-                                //console.log(e.members[1]):console.log(e.members[0])
+                           users.length > 0 ? users.map((e, i)=>{
+                                console.log(e.members)
+                                console.log(e.members[1])
+                                console.log(e.members[0])
 
                                 
                                 return (<Link to={`/chat/${e.members[0]._id === props.auth.user._id?e.members[1]._id:e.members[0]._id}`} key={i} className="user-row">
@@ -55,7 +56,7 @@ function Message(props) {
                                                {e.date}
                                             </div>
                                 </Link>)
-                            }) :<div></div>
+                            }) : <div>NO chat Yet</div>
                         }
                     </div>
                 </div>

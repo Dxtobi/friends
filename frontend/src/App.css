@@ -657,8 +657,8 @@ button.sugest-tabs_false {
 }
 
 a.profile-img {
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background: #c3bfbf;
   color: white;
@@ -676,14 +676,14 @@ a.profile-img {
 }
 
 .profile-img {
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   align-content: center;
   border-radius: 50%;
-  font-size: xxx-large;
+  font-size: xx-large;
 }
 
 
@@ -748,10 +748,7 @@ button.chat-delete {
   color: rgb(255, 255, 255);
 }
 
-img.image-welcom {
-  width: 80%;
-  margin: auto;
-}
+
 
 .we-img {
   display: flex;
@@ -767,7 +764,9 @@ a.welcome-btn {
   color: white;
   border-radius: 10px;
   margin: 20px auto;
-  font-size: xxx-large;
+  display: flex;
+  /* font-size: xxx-large; */
+  align-items: center;
 }
 
 
@@ -777,11 +776,21 @@ a.welcome-btn {
   flex-direction: column;
   justify-content: center;
 }
-
 img.image-welcom {
-  width: 500px;
   margin: auto;
-  height: 500px;
-  border-radius: 50%;
+  border-radius: 20px;
 }
 
+
+.sugest-list-items {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0px;
+    background: #dfdfdf;
+    padding: 10px;
+    border-radius: 17px;
+    width: 100%;
+    flex-direction: row;
+    border: none;
+}

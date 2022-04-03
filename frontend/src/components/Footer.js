@@ -4,11 +4,14 @@ import { AiFillHome, AiFillMessage, AiFillBell, AiOutlineUnorderedList, AiFillPl
 import { connect } from 'react-redux';
 import { useEffect } from "react";
 import { cheackAut } from "../actions/auth";
+import { getConversations } from "../actions/messages";
 import Loading from "./Loadding";
 
-function Footer({ auth, cheackAut }) {
+function Footer({ auth, cheackAut, getConversations }) {
 
-
+  useEffect(()=>{
+   // getConversations()
+},[])
     const nav = useNavigate()
   useEffect(() => {
       cheackAut()
@@ -34,7 +37,7 @@ function Footer({ auth, cheackAut }) {
             <Link to="/feeds"><AiFillHome  className={`icons-footer-${cheeckLoc("/feeds")&&"active"}`}  /></Link>
             <Link to="/message"><AiFillMessage className={`icons-footer-${cheeckLoc("/message")&&"active"}`}  /></Link>
             <Link to="/add"><AiFillPlusCircle  className={`icons-footer-${cheeckLoc("/add")&&"active"}`} /></Link>
-            <Link to="notification"><AiFillBell className={`icons-footer-${cheeckLoc("/notification")&&"active"}`}  /></Link>
+           {/* <Link to="notification"><AiFillBell className={`icons-footer-${cheeckLoc("/notification")&&"active"}`}  /></Link>*/}
             <Link to="/suggestion"><AiOutlineUnorderedList className={`icons-footer-${cheeckLoc("/profile")&&"active"}`} /></Link>
         </div>
         );
@@ -49,4 +52,4 @@ function Footer({ auth, cheackAut }) {
 
   });
 
-  export default connect( mapStateToProps, {cheackAut} )( Footer );
+  export default connect( mapStateToProps, {cheackAut, getConversations} )( Footer );

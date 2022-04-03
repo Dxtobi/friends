@@ -5,14 +5,15 @@ import axios from 'axios';
 //import setAuthToken from '../utils/setAuthToken';
 //import jwt_decode from 'jwt-decode';
 import { GET_ERROR, LOADING, ADD_POST, GET_POST, MY_POST, STOP_LOADING } from './types';
-
+const endpoint ="https://friendsapp-api.herokuapp.com"// "http://192.168.137.96:4000"
+// https://friendsapp-api.herokuapp.com
 export const addPostFeeling =  (data) => dispatch => {
  //console.log(data)
  dispatch({type:LOADING})
  const id = localStorage.getItem('friendapp');
  //console.log(localStorage.getItem('friendapp'))
  //console.log("id:--- ", id);
-  axios.post(`https://friendsapp-api.herokuapp.com/post/user/${id}`, data)
+  axios.post(`${endpoint}/post/user/${id}`, data)
    .then(res => {
       dispatch({
         type: ADD_POST,
@@ -33,7 +34,7 @@ export const getPosts =  () => dispatch => {
    dispatch({type:LOADING})
    const id = localStorage.getItem('friendapp');
     //console.log(id)
-    axios.get(`https://friendsapp-api.herokuapp.com/posts`,)
+    axios.get(`${endpoint}/posts`,)
      .then(res => {
       //   console.log(res.data)
         dispatch({
@@ -57,7 +58,7 @@ export const getMyPosts =  () => dispatch => {
  dispatch({type:LOADING})
  const id = localStorage.getItem('friendapp');
   //console.log(id)
-  axios.get(`https://friendsapp-api.herokuapp.com/profile/post/${id}`,)
+  axios.get(`${endpoint}/profile/post/${id}`,)
    .then(res => {
        console.log(res.data)
       dispatch({
@@ -81,7 +82,7 @@ export const getMyPosts =  () => dispatch => {
    dispatch({type:LOADING})
    //const id = localStorage.getItem('friendapp');
     //console.log(id)
-    axios.delete(` https://friendsapp-api.herokuapp.com/del/${id}`,)
+    axios.delete(`${endpoint}/del/${id}`,)
      .then(res => {
         dispatch(getMyPosts())
         //dispatch(setAuth(res))

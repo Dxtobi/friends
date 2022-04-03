@@ -2,14 +2,14 @@ import axios from 'axios';
 import isEmpty from '../validation/is-empty';
 //import setAuthToken from '../utils/setAuthToken';
 //import jwt_decode from 'jwt-decode';
-import { GET_ERROR, LOADING, GET_CON_ID, STOP_LOADING, GET_MESSAGES, GET_USERS_FRIENDS } from './types';
-
-
+import { GET_ERROR, LOADING, GET_CON_ID, STOP_LOADING, GET_MESSAGES, GET_USERS_FRIENDS, GET_MESSAGE } from './types';
+const endpoint ="https://friendsapp-api.herokuapp.com" // "http://192.168.137.96:4000"
+// "https://friendsapp-api.herokuapp.com"
 export const conversation =  (body) => dispatch => {
     
     dispatch({type:LOADING})
     
-     axios.post(` https://friendsapp-api.herokuapp.com/conversation`, body)
+     axios.post(`${endpoint}/conversation`, body)
       .then(res => {
      //     console.log(body)
          dispatch({
@@ -33,7 +33,7 @@ export const conversation =  (body) => dispatch => {
     const id = localStorage.getItem('friendapp');
     //dispatch({type:LOADING})
     
-     axios.get(`https://friendsapp-api.herokuapp.com/conversation/${id}`,)
+     axios.get(`${endpoint}/conversation/${id}`,)
       .then(res => {
         //console.log(id)
          dispatch({
@@ -55,7 +55,7 @@ export const conversation =  (body) => dispatch => {
     
     //dispatch({type:LOADING})
     
-     axios.get(`https://friendsapp-api.herokuapp.com/message/${id}`,)
+     axios.get(`${endpoint}/message/${id}`,)
       .then(res => {
       //  console.log(id)
          dispatch({
@@ -75,13 +75,16 @@ export const conversation =  (body) => dispatch => {
 //send msg
    export const sendMessages =  (body, id) => dispatch => {
     
-    dispatch({type:LOADING})
+   // dispatch({type:LOADING})
     
-     axios.post(`https://friendsapp-api.herokuapp.com/log/message/`, body)
+     axios.post(`${endpoint}/log/message/`, body)
       .then(res => {
        // console.log(id)
         
-         dispatch(getMessages(id))
+         dispatch({
+          type: GET_MESSAGE,
+          payload: res.data
+         })
 
          dispatch({type:STOP_LOADING})
       })

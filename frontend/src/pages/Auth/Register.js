@@ -30,18 +30,22 @@ function Register() {
     },[submitted]);
     const handleUname= (e) =>{
         setUsername(e)
+        setError("")
         setSubmitted(false)
     }
     const handlePhone= (e) =>{
         setPhone(e)
+        setError("")
         setSubmitted(false)
     }
     const handleEmail= (e) =>{
         setEmail(e)
         setSubmitted(false)
+        setError("")
     }
     const handlePassword= (e) =>{
         setPassword(e)
+        setError("")
         setSubmitted(false)
     }
 
@@ -68,7 +72,7 @@ function Register() {
         )
     }
     const apiPost = () =>{
-        console.log("clicked");
+      //  console.log("clicked");
         fetch('https://friendsapp-api.herokuapp.com/create/user/auth', {
                 method: 'POST',
                 body: JSON.stringify(
@@ -89,22 +93,36 @@ function Register() {
                      console.log(response);})
                 .then((json)=>{
                  console.log("clicked");
-                 console.log(json)
+               //  console.log(json)
                  });
     }
+   
+      //var re = new RegExp("");
     const signupFun = async (e) => {
         e.preventDefault();
-        if(username.length <4 ||email.length<9 || password.length <5 || phone.toString().length<10){
+       
+
+        if(!/^\w[\w.]{2,18}\w$/.test(username)){
+            return setError("Bad Username 😔")//console.log("error username")
+        }
+
+        if(!/.+@.+\.[A-Za-z]+$/.test(email)){
+            return setError("Bad Email 😔")//console.log("error email")
+        }
+
+
+       if(error.length>0){
+           return setError(error)
+       }
+        if(username.length <4 ||email.length<5 || password.length <5 || phone.toString().length<10){
             console.log("error");
-            setError("Bad details 😔")
+           return setError("Bad details 😔")
         }else{
             apiPost()
             apiPost ? setSubmitted(true) : setSubmitted(false)
              return  
-            // signup.push({"email":email, "password":password,"number":phone, "username":username}   )
         }
-        // console.log('jsad');
-        // console.log(password, email);
+       
     }
 
     return (

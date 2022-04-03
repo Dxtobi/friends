@@ -29,7 +29,7 @@ function MessageChat(props) {
     }
     useEffect(() => {
         props.conversation({myId:myid, yourId:uid})
-      }, [myid, uid]);
+      }, []);
 
       useEffect(() => {
        setMessages(props.auth.messages)
@@ -37,7 +37,7 @@ function MessageChat(props) {
       }, [props.auth.messages]);
 
     useEffect(() => {
-        const newSocket = io(`http://192.168.137.96:4000/`);
+        const newSocket = io(`https://friendsapp-api.herokuapp.com`);
         setSocket(newSocket);
        // return () => newSocket.close();
       }, [setSocket]);
@@ -50,6 +50,7 @@ function MessageChat(props) {
            socket.emit("newConnect", myid)
             
 
+           //props.auth.conversation._id
 
             socket.emit('subscribe', props.auth.conversation._id, uid);
 
