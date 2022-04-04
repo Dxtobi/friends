@@ -33,8 +33,7 @@ function Cards({emoji, feelings, date, name, id}) {
   const dateSpliter=(date)=>{
      const d = new Date(date);
      let h =  d.getHours()
-     const m = d.getMinutes()
-
+     const m = String(d.getMinutes()).padStart(2, '0')
      
 
      const fulldate = `${h}:${m}`

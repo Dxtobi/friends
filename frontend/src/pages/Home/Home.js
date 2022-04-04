@@ -10,10 +10,11 @@ import HomeHeader from "./Hcomponent/HomeHeader";
 
 function HomeFeed(props) {
     const [users, setUsers] = useState([])
+    const [skip, setSkip] = useState([])
 
    useEffect(()=>{
-        props.getPosts()
-        
+        props.getPosts(skip)
+        setSkip(skip+skip)
    },[])
 
    useEffect(()=>{
@@ -23,7 +24,10 @@ function HomeFeed(props) {
    
 },[props.posts.post])
 
-   
+   const loadMore = ()=>{
+    props.getPosts(skip)
+    setSkip(skip+skip)
+   }
     return (
         <div className="home-feed-container bottom-margin">
             <HomeHeader />
@@ -31,7 +35,7 @@ function HomeFeed(props) {
             <div className="mood-enter-div"><Link to='/add' ><div className="say-mood-div">How Are You Feeling Today?</div></Link></div>
             <div className="card-holder">
                 {
-                    users.map((e, i) => {
+                    users.slice(0,5).map((e, i) => {
                         return (
                             
                                <Cards key={i} name={e.username} date={e.createdAt} feelings={e.message} emoji={e.emoji} id={e.userId} />
@@ -39,6 +43,10 @@ function HomeFeed(props) {
                         )
                     })
                 }
+
+                <button onClick={loadMore} className="loadmore-btn">
+                    More
+                </button>
             </div>
     
            

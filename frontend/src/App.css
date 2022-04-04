@@ -794,3 +794,10 @@ img.image-welcom {
     flex-direction: row;
     border: none;
 }
+
+button.loadmore-btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}

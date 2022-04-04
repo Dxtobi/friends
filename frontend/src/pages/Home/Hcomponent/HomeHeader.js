@@ -12,7 +12,9 @@ function HomeHeader({auth}) {
                 <div className="h-hello">Hello,</div>
                 <div className="h-Name">{ auth.user.username}</div>
             </div>
-            <ProfileImg />
+           { 
+           //<ProfileImg />
+           }
         </div>
     );
   }

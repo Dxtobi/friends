@@ -29,12 +29,12 @@ export const addPostFeeling =  (data) => dispatch => {
      );
 };
 
-export const getPosts =  () => dispatch => {
+export const getPosts =  (skip) => dispatch => {
     //console.log(data)
    dispatch({type:LOADING})
    const id = localStorage.getItem('friendapp');
     //console.log(id)
-    axios.get(`${endpoint}/posts`,)
+    axios.get(`${endpoint}/posts/${skip}`,)
      .then(res => {
       //   console.log(res.data)
         dispatch({
