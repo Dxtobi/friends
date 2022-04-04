@@ -3,12 +3,14 @@ const express = require("express");
 const mongoose = require("mongoose");
 const helmet = require("helmet");
 const multer = require("multer");
+const morgan = require("morgan");
 const cors = require("cors");
 const PORT = process.env.PORT || 4000;
 const app = express();
 const http = require("http").Server(app);
 
 app.use(cors());
+app.use(morgan("dev"));
 
 const io = require("socket.io")(http,{
     cors:{
@@ -17,12 +19,7 @@ const io = require("socket.io")(http,{
 });
 
 
-//const start = require("./sockets/wss");
-//const sendMessageToUser = require("./sockets/wss");
-
-
-
-// mongoose.connect("mongodb://localhost/Friends-App")
+// mongoose.connect("mongodb://192.168.137.96/Friends-App")
 mongoose.connect(process.env.MONGO_URI)
    .then(() => console.log("Database connected!"))
    .catch(error => console.log(error))
@@ -30,7 +27,6 @@ mongoose.connect(process.env.MONGO_URI)
 // middlewares
 app.use(express.json());
 app.use(helmet());
-
 app.use(express.static("public"));
 
 
@@ -58,7 +54,7 @@ const onConnection =  socket  => {
 
 
     socket.on("subscribe", (room,userId) => {
-        console.log(room,userId);
+        console.log("room:",room,"user",userId);
         // console.log(socket.id);
         socket.join(room);
     });

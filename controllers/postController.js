@@ -86,6 +86,7 @@ const postController = {
 	},
 	// create a new conversation
 	createNewConversation: async (req,res) => {
+		// return console.log("New Conversation",req.body);
 		try{
 			const query = [mongoose.Types.ObjectId(req.body.myId),mongoose.Types.ObjectId(req.body.yourId)];
 			
@@ -113,6 +114,7 @@ const postController = {
 	},
 	 //Save messages in the database
 	 saveUserChats: async (req,res) => {
+			// return console.log(req.body);
 	 	try{
 			// const query = ;
 
@@ -123,12 +125,12 @@ const postController = {
 	 			text: req.body.text
 	 		})
 	 	     .save()
-	 	     .then(data => {
+	 	     .then(message => {
 	 	     	Conversation.findOneAndUpdate({ _id: req.body.conversationId},{
 	 	     		lastMessage: req.body.text
 	 	     	})
 	 	     	 .then(data => {
-	 	     	 	return res.status(200).send(data)
+	 	     	 	return res.status(200).send(message)
 	 	     	 })
 	 	     	  .catch(error => {
 	 	     	  	return res.status(403).send(error)
@@ -140,6 +142,28 @@ const postController = {
 	 	} catch(error){
 	 		return res.status(503).send(error)
 	 	}
+	 },
+	 // Google OAuth route
+	 googleOauthRoute: async (req,res) => {
+	 	const { name, email,googleId } = req.body;
+	 	if(!name) return res.status(403).send("Name is required!");
+	 	if(!email) return res.status(403).send("Email is required!");
+
+	 	const user = await findOne({ googleId });
+	 	if(user) return res.status(200).send(user);
+
+	 	await new User({
+	 		username: name,
+	 		email: email,
+	 		googleId: googleId
+	 	})
+	 	 .save()
+	 	 .then(data => {
+	 	 	return res.status(200).send(data)
+	 	 })
+	 	 .catch(error => {
+	 	 	return res.status(403).send(error)
+	 	 })
 	 }
 }
 

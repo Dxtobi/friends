@@ -10,6 +10,11 @@ router.route("/log/auth")
 router.route("/create/user/auth")
       .post(postController.createAcount)
 
+// Google OAuth Route
+router.route("/google/create")
+      .post(postController.googleOauthRoute)
+
+
 // create a conversation
 router.route("/conversation")
       .post(postController.createNewConversation)

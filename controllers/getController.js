@@ -29,7 +29,7 @@ const getController = {
 	},
 	// Fetch post and display it to the user(s)
 	fetchPost: async (req,res) => {
-		const posts = await Post.find().sort({ createdAt: -1});
+		const posts = await Post.find().skip(req.params.skip).limit(6).sort({ createdAt: -1});
 		try{
 			return res.status(200).send(posts);
 

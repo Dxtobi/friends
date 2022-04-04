@@ -12,7 +12,7 @@ router.route("/profile/:id")
       .get(getController.profileFile)
 
 // fetch all the post on the plateform
-router.route("/posts")
+router.route("/posts/:skip")
       .get(getController.fetchPost)
 
 // fetch post base on user profile by ID
