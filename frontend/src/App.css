@@ -414,7 +414,7 @@ input.search-input {
   justify-content: stretch;
   gap: 9px;
 }
-.notif-card{
+.notif-card {
   margin: 17px auto;
   width: 95%;
   height: 70px;
@@ -426,6 +426,7 @@ input.search-input {
   align-content: center;
   justify-content: stretch;
   gap: 9px;
+  align-items: center;
 }
 .image{
   width: 60px;
@@ -800,4 +801,26 @@ button.loadmore-btn {
     padding: 10px;
     border: none;
     border-radius: 5px;
+}
+
+a.chat-user {
+  color: white;
+  background: #225aff;
+  padding: 5px;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.message-header.bold {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
+button.more-users {
+  padding: 10px;
+  border-radius: 30px;
+  border: none;
+  background: #225aff;
+  color: white;
 }

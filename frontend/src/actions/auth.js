@@ -2,7 +2,7 @@ import axios from 'axios';
 import isEmpty from '../validation/is-empty';
 //import setAuthToken from '../utils/setAuthToken';
 //import jwt_decode from 'jwt-decode';
-import { GET_ERROR, LOADING, LOGIN, SET_CURRENT_USER, SIGNUP, STOP_LOADING } from './types';
+import { GET_ERROR, GET_USERS, LOADING, LOGIN, SET_CURRENT_USER, SIGNUP, STOP_LOADING } from './types';
 const endpoint ="https://friendsapp-api.herokuapp.com"// "http://192.168.137.96:4000"
 // https://friendsapp-api.herokuapp.com
 
@@ -27,6 +27,23 @@ export const login =  (data) => dispatch => {
      );
 };
 
+export const getUsers =  (skip) => dispatch => {
+  //console.log(userData, history)
+  dispatch({type:LOADING})
+  axios.get(`https://friendsapp-api.herokuapp.com/${skip}`)
+   .then(res => {
+      dispatch({
+        type: GET_USERS,
+        payload: res.data
+      })
+   } )
+   .catch( err =>
+      { dispatch({
+        type: GET_ERROR,
+        payload: err
+      })}
+     );
+};
 
 export const signup =  () => dispatch => {
   //console.log(userData, history)

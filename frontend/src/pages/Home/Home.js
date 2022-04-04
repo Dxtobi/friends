@@ -10,7 +10,7 @@ import HomeHeader from "./Hcomponent/HomeHeader";
 
 function HomeFeed(props) {
     const [users, setUsers] = useState([])
-    const [skip, setSkip] = useState([])
+    const [skip, setSkip] = useState(0)
 
    useEffect(()=>{
         props.getPosts(skip)

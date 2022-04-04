@@ -1,64 +1,43 @@
 
-import {useState} from "react"
+import {useEffect, useState} from "react"
 import { Link } from "react-router-dom";
+import { getUsers } from "../../actions/auth";
 import BackBtn from "../../components/BackBtn"
 import Notifcard from "../../components/Notifcard";
+import { connect } from "react-redux";
 
 
+function Users(props) {
 
-function Notifications() {
-    const [notifications, setNotifications] = useState([{
-        name: "Ajiboye",
-        date: "13",
-        feeling:"bored"
-    },
-    {
-        name: "Tobi",
-        date: "14",
-        feeling:"happy"
-    },
-    {
-        name: "Musterfa",
-        date: "13",
-        feeling:"sad"
-    },
-    {
-        name: "Adekunle",
-        date: "13",
-        feeling:"angry"
-    },
-    {
-        name: "Musterfa",
-        date: "13",
-        feeling:"sad"
-    },
-    {
-        name: "Adekunle",
-        date: "13",
-        feeling:"angry"
-    },
-    {
-        name: "Ajiboye",
-        date: "13",
-        feeling:"bored"
-    },
-    {
-        name: "Tobi",
-        date: "14",
-        feeling:"happy"
-    }
-])
+
+    const [users, setUsers] = useState([])
+    const [skip, setSkip] = useState(0)
+
+    const loadMore = ()=>{
+        props.getUsers(skip)
+        setSkip(skip+skip)
+       }
+
+    useEffect(()=>{
+        props.getUsers()
+    },[])
+    useEffect(()=>{
+       setUsers(props.auth.users)
+    },[props.auth.users])
+    
     return (
         <div className="message-feed-container bottom-margin">
           <BackBtn/>
             <div className="row-users-search">
                 <div className="row-users-search">
-                    <div className="message-header bold">Notifications</div>
+                    <div className="message-header bold"><div>Notifications</div> <button onClick={loadMore} className="more-users">More</button></div>
                     <div className="users-row-holder">
                         {
-                            notifications.map((e, i) => {
+                            users.slice(0, 10).map((e, i) => {
+                            console.log(e)
+
                                 return (
-                                    <Notifcard key={i} name={e.name} feeling={e.feeling} time={e.date}/>
+                                    <Notifcard key={i} name={e.username} id={e._id} />
                                 )
                             })
                         }
@@ -70,4 +49,10 @@ function Notifications() {
     );
   }
 
-  export default Notifications;
+  const mapStateToProps = ( state ) => ({
+    auth: state.auth,
+    errors: state.errors,
+    posts: state.posts
+  });
+
+  export default connect( mapStateToProps, {getUsers} )( Users );

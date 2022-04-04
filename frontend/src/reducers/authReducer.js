@@ -1,4 +1,4 @@
-import  { GET_CON_ID, GET_ERROR, GET_MESSAGES, GET_USERS_FRIENDS, LOADING, LOGIN, SET_CURRENT_USER, SIGNUP, STOP_LOADING, GET_MESSAGE } from '../actions/types';
+import  { GET_CON_ID, GET_ERROR, GET_MESSAGES, GET_USERS_FRIENDS, LOADING, LOGIN, SET_CURRENT_USER, SIGNUP, STOP_LOADING, GET_MESSAGE, GET_USERS } from '../actions/types';
 import isEmpty from '../validation/is-empty';
 
 const initialState = {
@@ -7,7 +7,8 @@ const initialState = {
   loading:false,
   friends:[],
   messages:[],
-  conversation:{}
+  conversation:{},
+  users:[]
 
 }
 
@@ -32,7 +33,12 @@ export default function app( state = initialState, action ){
               user: action.payload,
               loading:false
           }
-        
+          case GET_USERS:
+            return{
+                ...state,
+                users: action.payload,
+                loading:false
+            }   
     case LOADING:
               return{
                   ...state,
