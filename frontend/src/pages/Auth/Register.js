@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import CommonBtn from "./Acomponents/CommonBtn";
 import CommonInput from "./Acomponents/LoginInputes";
 import FeedbackMessage from "./Acomponents/FeedbackMessage.js";
-import { GoogleLogin } from "react-google-login";
+// import { GoogleLogin } from "react-google-login";
 
 
 function Register() {

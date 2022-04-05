@@ -39,7 +39,7 @@ function App() {
         <Route path="/message_chatid" element={<MessageChat />} />
         <Route path="/signin" element={<Login />} />
         <Route path="/signup" element={<Register />}/>
-        <Route path="/suggestion" element={<SugestComp />} />
+        <Route path="/suggestion" element={<Suggestions />} />
         <Route path="/users" element={<Notification />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/chat/:id" element={<MessageChat />} />

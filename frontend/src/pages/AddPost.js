@@ -3,6 +3,7 @@ import {useState} from "react"
 import {useNavigate} from "react-router-dom"
 import HomeHeader from "./Home/Hcomponent/HomeHeader";
 import { connect } from 'react-redux';
+import Suggestions from './Home/Suggestions';
 import SugestComp from "./Home/Hcomponent/SugestComp";
 import { addPostFeeling,  getPosts } from "../actions/post";
 

@@ -37,8 +37,8 @@ function Footer({ auth, cheackAut, getConversations }) {
             <Link to="/feeds"><AiFillHome  className={`icons-footer-${cheeckLoc("/feeds")&&"active"}`}  /></Link>
             <Link to="/message"><AiFillMessage className={`icons-footer-${cheeckLoc("/message")&&"active"}`}  /></Link>
             <Link to="/add"><AiFillPlusCircle  className={`icons-footer-${cheeckLoc("/add")&&"active"}`} /></Link>
-           { <Link to="/users"><AiOutlineUser className={`icons-footer-${cheeckLoc("/notification")&&"active"}`}  /></Link>}
-            <Link to="/suggestion"><AiOutlineUnorderedList className={`icons-footer-${cheeckLoc("/profile")&&"active"}`} /></Link>
+           { <Link to="/profile"><AiOutlineUser className={`icons-footer-${cheeckLoc("/notification")&&"active"}`}  /></Link>}
+            {/*<Link to="/suggestion"><AiOutlineUnorderedList className={`icons-footer-${cheeckLoc("/profile")&&"active"}`} /></Link>*/}
         </div>
         );
     }

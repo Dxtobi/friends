@@ -4,20 +4,16 @@ import { connect } from "react-redux";
 import BackBtn from "../components/BackBtn"
 import CardsProfile from "./Home/Hcomponent/FeelingCardProfile";
 import { clearAuth, } from "../actions/auth";
-import { getMyPosts,  } from "../actions/post";
+import { getMyPosts  } from "../actions/post";
 
 
 function Profile(props) {
     
-    const [users, setUsers] = useState([{
-        name: "bash",
-        date: "11:12 pm 2 2022",
-        feelings:"Happy",
-        emoji:"😊"
-    },])
+    const [users, setUsers] = useState([])
+    const [skip, setSkip] = useState(0)
 
     useEffect((e)=>{
-        props.getMyPosts()
+        props.getMyPosts(skip)
             
     },[]);   
     
@@ -25,6 +21,8 @@ function Profile(props) {
      //  console.log(props.myposts.mypost)
        setUsers(props.myposts.mypost)
     }, [props.myposts]);
+
+    
 
     return (
         <div className="profile-feed-container bottom-margin">
@@ -65,5 +63,5 @@ function Profile(props) {
     myposts: state.posts
   });
 
-  export default connect( mapStateToProps, {clearAuth, getMyPosts, } )( Profile );
+  export default connect( mapStateToProps, {clearAuth, getMyPosts} )( Profile );
  

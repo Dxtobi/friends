@@ -8,7 +8,7 @@ function BackBtn({ auth }) {
  
     return (
         
-          <div className="top-holder"> <button onClick={()=>nav(-1)} className="back-button"><AiOutlineArrowLeft size={40}/></button></div>
+          <div className="top-holder" > <button onClick={()=>nav(-1)} className="back-button"><AiOutlineArrowLeft size={20}/></button></div>
        
         );
     }

@@ -1,4 +1,3 @@
-
 import {useEffect, useState} from "react"
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -10,25 +9,20 @@ import HomeHeader from "./Hcomponent/HomeHeader";
 
 function HomeFeed(props) {
     const [users, setUsers] = useState([])
-    const [skip, setSkip] = useState(0)
 
    useEffect(()=>{
-        props.getPosts(skip)
-        setSkip(skip+5)
+        props.getPosts()
+        
    },[])
 
    useEffect(()=>{
-   
+   if(props.posts.post){
     setUsers(props.posts.post)
-   console.log(props.posts.post)
+   }
    
 },[props.posts.post])
 
-   const loadMore = ()=>{
-    console.log(skip)
-    props.getPosts(skip+5)
-    setSkip(skip+5)
-   }
+   
     return (
         <div className="home-feed-container bottom-margin">
             <HomeHeader />
@@ -44,10 +38,6 @@ function HomeFeed(props) {
                         )
                     })
                 }
-
-                <button onClick={loadMore} className="loadmore-btn">
-                    More
-                </button>
             </div>
     
            
