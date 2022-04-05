@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 This is where all the frontend occurs
+=======
+To contribute to this project, kindly create a new branch and push to it. After verification, merging takes place
+>>>>>>> master
