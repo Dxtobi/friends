@@ -14,12 +14,12 @@ function Users(props) {
     const [skip, setSkip] = useState(0)
 
     const loadMore = ()=>{
-        props.getUsers(skip)
-        setSkip(skip+skip)
+        props.getUsers(skip+10)
+        setSkip(skip+10)
        }
 
     useEffect(()=>{
-        props.getUsers()
+        props.getUsers(skip)
     },[])
     useEffect(()=>{
        setUsers(props.auth.users)
@@ -33,7 +33,7 @@ function Users(props) {
                     <div className="message-header bold"><div>Notifications</div> <button onClick={loadMore} className="more-users">More</button></div>
                     <div className="users-row-holder">
                         {
-                            users.slice(0, 10).map((e, i) => {
+                            users.map((e, i) => {
                             console.log(e)
 
                                 return (

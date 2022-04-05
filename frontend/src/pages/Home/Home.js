@@ -14,19 +14,20 @@ function HomeFeed(props) {
 
    useEffect(()=>{
         props.getPosts(skip)
-        setSkip(skip+skip)
+        setSkip(skip+5)
    },[])
 
    useEffect(()=>{
-   if(props.posts.post){
+   
     setUsers(props.posts.post)
-   }
+   console.log(props.posts.post)
    
 },[props.posts.post])
 
    const loadMore = ()=>{
-    props.getPosts(skip)
-    setSkip(skip+skip)
+    console.log(skip)
+    props.getPosts(skip+5)
+    setSkip(skip+5)
    }
     return (
         <div className="home-feed-container bottom-margin">
@@ -35,7 +36,7 @@ function HomeFeed(props) {
             <div className="mood-enter-div"><Link to='/add' ><div className="say-mood-div">How Are You Feeling Today?</div></Link></div>
             <div className="card-holder">
                 {
-                    users.slice(0,5).map((e, i) => {
+                    users.map((e, i) => {
                         return (
                             
                                <Cards key={i} name={e.username} date={e.createdAt} feelings={e.message} emoji={e.emoji} id={e.userId} />
